@@ -226,6 +226,10 @@ class JsonApiResource implements ArrayAccess, Responsable
      */
     public function meta($request): iterable
     {
+        if (method_exists($this->schema, 'meta')) {
+            return $this->schema->meta($this, $request);
+        }
+
         return [];
     }
 
